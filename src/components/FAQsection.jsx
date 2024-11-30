@@ -2,7 +2,7 @@ import React from 'react';
 
 export const FAQSection = () => {
   return (
-    <div className="bg-[#F0F8FF] rounded-[45px] px-6 sm:px-12 md:px-20 py-10 sm:py-14 lg:mx-8 max-w-[1430px] mx-auto">
+    <div className="bg-[#F0F8FF] rounded-[45px] px-6 sm:mx-6 md:mx-11 py-10 sm:py-14  lg:mx-8 max-w-auto ">
       {/* Row 1 */}
       <div className="space-y-4 relative">
         {/* Question and Icon */}

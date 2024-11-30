@@ -30,7 +30,7 @@ export const Element = () => {
             Real-Time Notifications
           </h3>
           <p className="text-[#6C6384] text-sm sm:text-base ">
-            Instantly know when your emails are opened<br/> or clicked, so you can follow up <br/>at the perfect time.
+            Instantly know when your emails <br/>are opened or clicked, so you <br/>can follow up at the perfect time.
           </p>
         </div>
 
@@ -45,7 +45,7 @@ export const Element = () => {
             Track email status
           </h3>
           <p className="text-[#6C6384] text-sm sm:text-base ">
-            Easily monitor the delivery, open, and click<br/>  status of every email, helping you <br/> improve communication efficiency.
+            Easily monitor the delivery, open, <br/>and click  status of every email, <br/> helping you improve  <br/>communication efficiency.
           </p>
         </div>
 
@@ -60,7 +60,7 @@ export const Element = () => {
             Privacy First
           </h3>
           <p className="text-[#6C6384] text-sm sm:text-base ">
-            Your data stays secure. We prioritize your privacy, ensuring only you can access your email tracking details.
+            Your data stays secure. We <br/> prioritize your privacy, ensuring <br/> only you can access your email <br/> tracking details.
           </p>
         </div>
       </div>

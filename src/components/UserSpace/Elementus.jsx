@@ -1,6 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router';
 
 export const Elementus = () => {
+  const navigate=useNavigate()
   return (
     <div className="flex-1 p-6">
       {/* Titre principal */}
@@ -36,7 +38,7 @@ export const Elementus = () => {
               <p className="text-[#6C6384] text-sm">per user, per month</p>
             </div>
             {/* Bouton */}
-            <button className="bg-[#007AFF] text-white rounded-lg px-4 py-2 font-semibold hover:bg-blue-600 transition">
+            <button onClick={()=>navigate('/userCard')} className="bg-[#007AFF] text-white rounded-lg px-4 py-2 font-semibold hover:bg-blue-600 transition">
               Upgrade
             </button>
           </div>
@@ -68,7 +70,7 @@ export const Elementus = () => {
               <p className="text-[#6C6384] text-sm">per user, per month</p>
             </div>
             {/* Bouton */}
-            <button className="bg-[#007AFF] text-white rounded-lg px-4 py-2 font-semibold hover:bg-blue-600 transition">
+            <button onClick={()=>navigate('/userCard')} className="bg-[#007AFF] text-white rounded-lg px-4 py-2 font-semibold hover:bg-blue-600 transition">
               Upgrade
             </button>
           </div>

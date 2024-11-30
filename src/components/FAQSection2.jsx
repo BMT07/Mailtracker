@@ -4,7 +4,7 @@ export const FAQSection2 = () => {
   return (
     <div className="py-10 px-6 sm:px-12">
       {/* Container for the two elements */}
-      <div className="flex flex-col-reverse lg:flex-row items-center lg:items-stretch justify-between gap-6">
+      <div className="flex flex-col-reverse lg:flex-row items-center lg:items-stretch justify-between gap-4">
         {/* Left Element (Card) */}
         <div className="bg-[#22262A] rounded-[50px] p-6 sm:p-8 text-center flex-1 flex flex-col w-full">
           <h2 className="text-white text-2xl sm:text-3xl font-semibold leading-tight mb-4 text-left">
@@ -19,7 +19,7 @@ export const FAQSection2 = () => {
         </div>
 
         {/* Right Element (Image) */}
-        <div className="flex-1 w-full max-w-[450px] sm:max-w-[500px] md:max-w-[550px] lg:max-w-full">
+        <div className="flex-1 w-full max-w-auto sm:max-w-auto md:max-w-auto lg:max-w-full">
           <img
             src={require('../assets/image 3.png')}
             alt="Illustration"

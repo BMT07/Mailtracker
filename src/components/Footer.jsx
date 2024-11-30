@@ -2,11 +2,11 @@ import React from 'react';
 
 export const Footer = () => {
   return (
-    <footer className="bg-[#22262A] text-white py-10 px-6 sm:px-12">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center ">
+    <footer className="bg-[#22262A] text-white py-10 px-auto sm:px-12">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:gap-80 gap-20  ">
         {/* First Column */}
         <div className="flex flex-col sm:items-center md:items-start text-white border-b-2 md:border-b-0 border-white pb-6 md:pb-0">
-    <div className="flex items-center sm:justify-center md:justify-start mb-4">
+    <div className="flex items-start sm:justify-start md:justify-start mb-4">
       <img
         src={require('../assets/Logo.png')}
         alt="MailTracker Logo"

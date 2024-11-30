@@ -25,7 +25,7 @@ export const Feature = () => {
   };
 
   return (
-    <div className="relative flex justify-center items-center h-full w-full pb-16">
+    <div className="relative flex justify-center items-center h-full w-full pb-16 lg:mx-0 sm:mx-6 md:ms-4 ">
       {/* Image affichée */}
       <img
         src={images[currentIndex]}
