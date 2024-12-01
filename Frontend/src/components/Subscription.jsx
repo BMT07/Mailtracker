@@ -33,7 +33,7 @@ export const Subscription = () => {
       {/* Plans Container */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 justify-center items-center">
         {/* Free Plan */}
-        <div className="bg-white border-4 border-[#F0F8FF] rounded-[60px] p-8 py-16 flex flex-col items-center text-center w-full sm:w-[300px] md:w-[700px] lg:w-[500px] mx-auto">
+        <div className="bg-white border-4 border-[#F0F8FF] rounded-[60px] p-8 py-16 flex flex-col items-center text-center w-full sm:w-[600px] md:w-[700px] lg:w-[500px] mx-auto">
   {/* Title */}
   <h3 className="text-[#1B0454] px-4 py-2 text-sm font-semibold uppercase mb-6">
     Free
@@ -72,7 +72,7 @@ export const Subscription = () => {
 
 
         {/* Pro Plan */}
-        <div className="bg-customBlue rounded-[60px] p-8 py-16 flex flex-col items-center text-center w-full sm:w-[300px] md:w-[700px] lg:w-[500px] mx-auto">
+        <div className="bg-customBlue rounded-[60px] p-8 py-16 flex flex-col items-center text-center w-full sm:w-[600px] md:w-[700px] lg:w-[500px] mx-auto">
           {/* Title */}
           <div className="flex items-center gap-2 mb-6">
             <img

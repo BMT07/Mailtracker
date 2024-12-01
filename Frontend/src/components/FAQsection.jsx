@@ -1,83 +1,85 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export const FAQSection = () => {
+  const [expanded, setExpanded] = useState(null);
+
+  const toggleSection = (index) => {
+    setExpanded(expanded === index ? null : index);
+  };
+
   return (
-    <div className="bg-[#F0F8FF] rounded-[45px] px-6 sm:mx-6 md:mx-11 py-10 sm:py-14  lg:mx-8 max-w-auto ">
-      {/* Row 1 */}
-      <div className="space-y-4 relative">
-        {/* Question and Icon */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
-          <h3 className="text-[#1B0454] font-semibold text-lg sm:text-xl w-full sm:w-3/4 lg:px-8">
-            How does the mail tracker extension work?
-          </h3>
-          <div className="w-8 h-8 bg-[#1B0454] rounded-full flex items-center justify-center mt-4 sm:mt-0">
-            <span className="text-white font-bold text-lg">×</span>
-          </div>
-        </div>
-
-        {/* Answer */}
-        <div className="relative">
-          <p className="text-[#6C6384] text-sm sm:text-base leading-relaxed w-full sm:w-3/4 lg:px-8">
-            Our mail tracker extension integrates seamlessly with Gmail to provide real-time tracking of your sent
-            emails. It notifies you when your emails are opened and read. The extension works by embedding a small,
-            invisible tracking pixel in your emails, which notifies our system when the email is opened. This data is
-            then presented in your dashboard for easy access and review.
-          </p>
-          <span
-            className="absolute top-0 left-0 sm:top-auto sm:left-auto sm:relative sm:pl-0 text-customBlue font-space-mono text-lg sm:translate-y-2"
+    <div className="bg-[#F0F8FF] rounded-[45px] px-6 sm:mx-6 md:mx-11 py-10 sm:py-14 lg:mx-8 max-w-auto">
+      {[
+        {
+          question: 'How does the mail tracker extension work?',
+          answer:
+            'Our mail tracker extension integrates seamlessly with Gmail to provide real-time tracking of your sent emails. It notifies you when your emails are opened and read. The extension works by embedding a small, invisible tracking pixel in your emails, which notifies our system when the email is opened. This data is then presented in your dashboard for easy access and review.',
+        },
+        {
+          question: 'Is my email data secure?',
+          answer:
+            'Yes, we prioritize your data security. All tracking data is encrypted and only accessible to you through your account dashboard. We do not share your data with third parties.',
+        },
+        {
+          question: 'Can I track emails from other email providers?',
+          answer:
+            'Currently, our extension is designed for Gmail. However, we are actively working on supporting other major email providers in the future.',
+        },
+        {
+          question: 'What happens if I exceed the tracked emails limit?',
+          answer:
+            'If you exceed the limit, tracking will be paused until the next billing cycle. You can also upgrade your plan to increase your tracking quota.',
+        },
+      ].map((item, index) => (
+        <div key={index} className="space-y-4">
+          <div
+            className="flex flex-col sm:flex-row items-start sm:items-center justify-between cursor-pointer"
+            onClick={() => toggleSection(index)}
           >
-            01.
-          </span>
-        </div>
-      </div>
+            {/* Numéro dynamique */}
+            <span
+              className={`text-customBlue font-space-mono text-lg ${
+                expanded === index
+                  ? 'block sm:static sm:translate-y-0 mb-2 sm:mb-0'
+                  : 'block sm:inline sm:mr-4'
+              }`}
+            >
+              {`0${index + 1}.`}
+            </span>
 
-      {/* Separator */}
-      <div className="h-[2px] bg-white my-6"></div>
+            {/* Question */}
+            <h3 className="text-[#1B0454] font-semibold text-lg sm:text-xl w-full sm:w-3/4 lg:px-0">
+              {item.question}
+            </h3>
 
-      {/* Row 2 */}
-      <div className="space-y-4 flex flex-col sm:flex-row items-center justify-between">
-        <div className="flex items-center space-x-4">
-          <span className="text-customBlue font-space-mono text-lg">02.</span>
-          <h3 className="text-[#1B0454] font-semibold text-lg sm:text-xl">
-            Is my email data secure?
-          </h3>
-        </div>
-        <div className="w-8 h-8 bg-[#FC4A1A33] rounded-full flex items-center justify-center mt-4 sm:mt-0">
-          <span className="text-[#1B0454] font-bold text-lg">+</span>
-        </div>
-      </div>
+            {/* Bouton + ou × */}
+            <div
+              className={`w-8 h-8 rounded-full flex items-center justify-center mt-4 sm:mt-0 ${
+                expanded === index ? 'bg-[#1B0454]' : 'bg-[#FC4A1A33]'
+              }`}
+            >
+              <span
+                className={`text-lg font-bold ${
+                  expanded === index ? 'text-white' : 'text-[#1B0454]'
+                }`}
+              >
+                {expanded === index ? '×' : '+'}
+              </span>
+            </div>
+          </div>
 
-      {/* Separator */}
-      <div className="h-[2px] bg-white my-6"></div>
+          {/* Texte déplié */}
+          {expanded === index && (
+            <div className="relative">
+              <p className="text-[#6C6384] text-sm sm:text-base leading-relaxed w-full sm:w-3/4 lg:px-8">
+                {item.answer}
+              </p>
+            </div>
+          )}
 
-      {/* Row 3 */}
-      <div className="space-y-4 flex flex-col sm:flex-row items-center justify-between">
-        <div className="flex items-center space-x-4">
-          <span className="text-customBlue font-space-mono text-lg">03.</span>
-          <h3 className="text-[#1B0454] font-semibold text-lg sm:text-xl">
-            Can I track emails from other email providers?
-          </h3>
+          <div className="h-[2px] bg-white my-6"></div>
         </div>
-        <div className="w-8 h-8 bg-[#FC4A1A33] rounded-full flex items-center justify-center mt-4 sm:mt-0">
-          <span className="text-[#1B0454] font-bold text-lg">+</span>
-        </div>
-      </div>
-
-      {/* Separator */}
-      <div className="h-[2px] bg-white my-6"></div>
-
-      {/* Row 4 */}
-      <div className="space-y-4 flex flex-col sm:flex-row items-center justify-between">
-        <div className="flex items-center space-x-4">
-          <span className="text-customBlue font-space-mono text-lg">04.</span>
-          <h3 className="text-[#1B0454] font-semibold text-lg sm:text-xl">
-            What happens if I exceed the tracked emails limit?
-          </h3>
-        </div>
-        <div className="w-8 h-8 bg-[#FC4A1A33] rounded-full flex items-center justify-center mt-4 sm:mt-0">
-          <span className="text-[#1B0454] font-bold text-lg">+</span>
-        </div>
-      </div>
+      ))}
     </div>
   );
 };

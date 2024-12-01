@@ -70,7 +70,7 @@ export const Navbarus = () => {
                 <div className="flex items-center mt-4 space-x-2">
                     <span className="text-[#1B0454] font-semibold">Afi K.</span>
                     <img
-                        src={require('./assetsus/Photo.png')} // Remplace par l'image réelle
+                        src={require('../../assets/Logo.png')} // Remplace par l'image réelle
                         alt="Afi K."
                         className="h-8 w-8 rounded-full object-cover"   
                     />
