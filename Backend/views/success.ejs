@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <title>Succès du paiement</title>
+</head>
+<body>
+  <div class="container text-center mt-5">
+    <h1 class="display-4">Paiement réussi !</h1>
+    <p id="message" class="lead">Merci pour votre achat. ${email} : ${sessionId}</p>
+    <a href="/payments/stripe" class="btn btn-primary mt-3">Retour à l'accueil</a>
+  </div>
+  <script>
+    // Récupérer les paramètres de l'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const sessionId = urlParams.get('session_id');
+    // const email = urlParams.get('email');
+    const email = "<%= email %>"
+
+    // Afficher les informations personnalisées
+    document.getElementById('message').innerText = `Merci pour votre achat, ${email}. Votre session ID est ${sessionId}.`;
+
+    // Optionnel : Vous pouvez également envoyer une requête au serveur pour obtenir des détails supplémentaires sur la session
+  </script>
+</body>
+
+</html>

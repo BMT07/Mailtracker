@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paiement</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .container {
+      text-align: center;
+      padding: 50px;
+    }
+    .card-group .card {
+      margin: 15px;
+    }
+    .user-info, .subscription-info, .invoice-info {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container md-12">
+    <div class="row">
+      <div class="col-md-3">
+        <div id="user-info" class="user-info p-3 mb-3 bg-light rounded shadow-sm text-primary h5">Email: <%= email %></div>
+        <div id="subscription-type" class="subscription-info p-3 mb-3 bg-light rounded shadow-sm text-primary h5">Subscription: <%= subscriptionType %></div>
+        <div id="subscription-id" class="subscription-info p-3 mb-3 bg-light rounded shadow-sm text-primary h5">Subscription ID: <%= subscriptionId %></div>
+        <div id="subscription-end-date" class="subscription-info p-3 mb-3 bg-light rounded shadow-sm text-primary h5">Subscription end date: <%= subscriptionEndDate %></div>
+        <div id="sched-sub-type" class="subscription-info p-3 mb-3 bg-light rounded shadow-sm text-primary h5">Sched Subscription type: <%= scheduledSubscriptionType %></div>
+        <div id="sched-sub-id" class="subscription-info p-3 mb-3 bg-light rounded shadow-sm text-primary h5">Sched Subscription ID: <%= scheduledSubscriptionId %></div>
+        <div id="sched-sub-start-date" class="subscription-info p-3 mb-3 bg-light rounded shadow-sm text-primary h5">Sched Subscription Start date: <%= scheduledSubscriptionStartDate %></div>
+        <div id="is-suspended" class="invoice-info p-3 bg-light rounded shadow-sm text-primary h5">Is suspended: <%= isSuspended %></div>
+        <div id="suspension-date" class="invoice-info p-3 bg-light rounded shadow-sm text-primary h5">Suspension date: <%= suspensionDate %></div>
+        <div id="next-invoice-info" class="invoice-info p-3 mb-3 bg-light rounded shadow-sm text-primary h5"></div>
+        <div id="invoice-list" class="invoice-info p-3 mb-3 bg-light rounded shadow-sm text-primary h5">
+          <h4>Invoice list:</h4>
+          
+          <% if (invoiceList.length > 0) { %>
+            <% invoiceList.forEach(invoice => { %>
+              <div class="invoice-item">
+                <p><strong>Invoice ID:</strong> <%= invoice.id %></p>
+                <p><strong>Date:</strong> <%= invoice.date %></p>
+                <p><strong>Total:</strong> $<%= invoice.total %></p>
+                <p><strong>Status:</strong> <%= invoice.status %></p>
+                <p><a href="<%= invoice.invoiceUrl %>" target="_blank" class="btn btn-primary">View Invoice</a></p>
+                <hr>
+              </div>
+            <% }) %>
+          <% } else { %>
+            <p>No invoices found.</p>
+          <% } %>
+        </div>
+        
+
+      </div>
+
+      <div class="col-md-9 text-right">
+        <div class="card-group">
+          <div class="card">
+            <div class="card-header bg-primary text-white">Premium Daily</div>
+            <div class="card-body">
+              <h5 class="card-title">€1.99 / jour</h5>
+              <button id="subscribe-daily" class="btn btn-primary w-100"
+          <% if (subscriptionType === 'daily' || (subscriptionType === 'daily' && subscriptionEndDate)) { %> 
+            disablede
+          <% } %> 
+        >
+        <% if (isSuspended) { %>
+          Suspension
+        <% } else if (subscriptionType === 'daily' && !subscriptionEndDate) { %>
+          Abonnement Actif
+        <% } else if (scheduledSubscriptionType === 'daily') { %>
+          Abonnement planifié
+        <% } else if (subscriptionType === 'daily' && subscriptionEndDate) { %>
+          Abonnement Annulé
+        <% } else { %>
+          S'abonner à Premium Daily
+        <% } %>
+        </button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header bg-primary text-white">Premium Mensuel</div>
+            <div class="card-body">
+              <h5 class="card-title">€9.9 / mois</h5>
+              <button id="subscribe-monthly" class="btn btn-primary w-100"
+          <% if (subscriptionType === 'monthly' || (subscriptionType === 'monthly' && subscriptionEndDate)) { %> 
+            disablede
+          <% } %> 
+        >
+        <% if (isSuspended) { %>
+          Suspension
+        <% } else if (subscriptionType === 'monthly' && !subscriptionEndDate) { %>
+          Abonnement Actif
+        <% } else if (scheduledSubscriptionType === 'monthly') { %>
+          Abonnement planifié
+        <% } else if (subscriptionType === 'monthly' && subscriptionEndDate) { %>
+          Abonnement Annulé
+        <% } else { %>
+          S'abonner à Premium Mensuel
+        <% } %>
+        </button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header bg-info text-white">Premium Annuel</div>
+            <div class="card-body">
+              <h5 class="card-title">€59.9 / an</h5>
+              <button id="subscribe-yearly" class="btn btn-info w-100"
+          <% if (subscriptionType === 'yearly' || (subscriptionType === 'yearly' && subscriptionEndDate)) { %> 
+            disablede
+          <% } %> 
+        >
+        <% if (isSuspended) { %>
+          Suspension
+        <% } else if (subscriptionType === 'yearly' && !subscriptionEndDate) { %>
+          Abonnement Actif
+        <% } else if (scheduledSubscriptionType === 'yearly') { %>
+          Abonnement planifié
+        <% } else if (subscriptionType === 'yearly' && subscriptionEndDate) { %>
+          Abonnement Annulé
+        <% } else { %>
+          S'abonner à Premium Annuel
+        <% } %>
+        </button>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex flex-wrap justify-content-end">
+          <button id="cancel-active-subscription" class="btn btn-danger me-3 mt-3">Résilier mon abonnement</button>
+          <button id="cancel-scheduled-subscription" class="btn btn-danger me-3 mt-3">Annuler le changement de d'abonnement</button>
+          <button id="reactivate-subscription" class="btn btn-success me-3 mt-3">Réactiver mon abonnement</button>
+          <% if (paymentUrl) { %>
+            <a class="btn btn-success me-3 mt-3" href="<%= paymentUrl %>">Payer</a>
+          <% } %>
+        </div>
+        <button id="back-home" class="btn btn-secondary me-3 mt-3">Retour à l'accueil</button>
+
+      </div>
+    </div>
+    <div class="text-center mt-4">
+      <button id="stripe_portal" class="btn btn-success">Manage My Payment Method</button>
+    </div>
+  </div>
+
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+  const stripe = Stripe("<%= stripePublicKey %>"); // Replace with your Stripe public key
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    const email = "<%= email %>"
+    await displayNextInvoiceDetails(email);
+  });
+
+  async function displayNextInvoiceDetails(email) {
+    const invoiceInfo = document.getElementById('next-invoice-info');
+    const invoiceResponse = await fetch(`/payments/next-invoice-details?email=${email}`);
+    const invoiceData = await invoiceResponse.json();
+    if (invoiceData.nextInvoiceDate && invoiceData.nextInvoiceAmount) {
+      invoiceInfo.textContent = `Prochaine facture: ${invoiceData.nextInvoiceDate} pour un montant de ${invoiceData.nextInvoiceAmount} USD.`;
+    } else {
+      invoiceInfo.textContent = `No next invoice`;
+    }
+  }
+
+  document.getElementById('back-home').addEventListener('click', () => {
+    window.location.href = '/';
+  });
+
+  document.getElementById('stripe_portal').addEventListener('click', () => {
+    const email = "<%= email %>"
+    window.location.href = '/payments/portal?email=' + email;
+  });
+
+  document.getElementById('reactivate-subscription').addEventListener('click', async function() {
+
+    const email = "<%= email %>";
+    if (!email) {
+      alert("User email not found.");
+      return;
+    }
+
+    // Display a confirmation dialog
+    const userConfirmed = confirm("Are you sure you want to reactivate the subscription?");
+
+    // If the user clicked "OK" (Yes)
+    if (userConfirmed) {
+      try {
+        const response = await fetch('/payments/reactivate-subscription', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email })
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+          alert(result.message);
+          // Update the button to indicate it has been clicked/disabled
+          this.classList.add('disabled');
+          this.disabled = true; // Désactive le bouton après la réactivation
+        } else {
+          alert(result.error);
+        }
+
+        // Optionally reload the page after success
+        location.reload();
+      } catch (error) {
+        console.error('Error reactivating subscription:', error);
+        alert('An error occurred while reactivating the subscription.');
+      }
+    } else {
+      // The user clicked "Cancel" (No)
+      alert("Subscription reactivation canceled.");
+    }
+  });
+
+  document.getElementById('cancel-active-subscription').addEventListener('click', async () => {
+    const email = "<%= email %>";
+
+    if (!email) {
+      alert("User email not found.");
+      return;
+    }
+
+    // Display a confirmation dialog
+    const userConfirmed = confirm("Are you sure you want to cancel your subscription?");
+
+    // If the user clicked "OK" (Yes)
+    if (userConfirmed) {
+      try {
+        const response = await fetch('/payments/cancel-active-subscription', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email })
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+          alert(result.message);
+        } else {
+          alert(result.error);
+        }
+
+        // Optionally reload the page after success
+        location.reload();
+      } catch (error) {
+        console.error('Error canceling active subscription:', error);
+        alert('An error occurred while canceling the active subscription.');
+      }
+    } else {
+      // The user clicked "Cancel" (No)
+      alert("Active subscription cancellation aborted.");
+    }
+  });
+
+  document.getElementById('cancel-scheduled-subscription').addEventListener('click', async () => {
+    const email = "<%= email %>";
+    
+    if (!email) {
+      alert("User email not found.");
+      return;
+    }
+
+    // Display a confirmation dialog
+    const userConfirmed = confirm("Are you sure you want to cancel the scheduled subscription?");
+
+    // If the user clicked "OK" (Yes)
+    if (userConfirmed) {
+      try {
+        const response = await fetch('/payments/cancel-scheduled-subscription', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email })
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+          alert(result.message);
+        } else {
+          alert(result.error);
+        }
+
+        // Optionally reload the page after success
+        location.reload();
+      } catch (error) {
+        console.error('Error canceling scheduled subscription:', error);
+        alert('An error occurred while canceling the scheduled subscription.');
+      }
+    } else {
+      // The user clicked "Cancel" (No)
+      alert("Scheduled subscription cancellation aborted.");
+    }
+  });
+
+  document.getElementById('subscribe-daily').addEventListener('click', async () => {
+    // Display a confirmation dialog
+    const userConfirmed = confirm("Are you sure you want to subscribe to the daily plan?");
+
+    // If the user clicked "OK" (Yes)
+    if (userConfirmed) {
+      handleSubscription('daily');
+    } else {
+      // The user clicked "Cancel" (No)
+      alert("Subscription to the daily plan aborted.");
+    }
+  });
+  
+  document.getElementById('subscribe-monthly').addEventListener('click', async () => {
+    // Display a confirmation dialog
+    const userConfirmed = confirm("Are you sure you want to subscribe to the monthly plan?");
+
+    // If the user clicked "OK" (Yes)
+    if (userConfirmed) {
+      handleSubscription('monthly');
+    } else {
+      // The user clicked "Cancel" (No)
+      alert("Subscription to the monthly plan aborted.");
+    }
+  });
+
+  document.getElementById('subscribe-yearly').addEventListener('click', async () => {
+    // Display a confirmation dialog
+    const userConfirmed = confirm("Are you sure you want to subscribe to the yearly plan?");
+
+    // If the user clicked "OK" (Yes)
+    if (userConfirmed) {
+      handleSubscription('yearly');
+    } else {
+      // The user clicked "Cancel" (No)
+      alert("Subscription to the yearly plan aborted.");
+    }
+  });
+
+  async function handleSubscription(subscriptionType) {
+    const email = "<%= email %>"
+    
+    if (!email) {
+      alert("User email not found.");
+      return;
+    }
+
+    try {
+      const response = await fetch(`/payments/get-subscription-status?email=${email}`);
+      const data = await response.json();
+
+      const endpoint = data.subscriptionType !== 'none' ? 'update-subscription' : 'create-checkout-session';
+      
+      const res = await fetch(`/payments/${endpoint}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, subscriptionType })
+      });
+
+      if (!res.ok) {
+        const error = await res.json();
+        throw new Error(error.error);
+      }
+
+      const session = await res.json();
+      if (endpoint === 'create-checkout-session') {
+        const result = await stripe.redirectToCheckout({
+          sessionId: session.id,
+        });
+
+        if (result.error) {
+          alert(result.error.message);
+        }
+      } else {
+        alert(session.message);
+        location.reload();
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Une erreur est survenue lors de la création de la session de paiement.');
+    }
+  }
+
+  document.getElementById('pay-invoice').addEventListener('click', async () => {
+
+    const email = "<%= email %>";
+
+    try {
+      const response = await fetch('/payments/pay-invoice', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email })
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        alert(result.message);
+        
+      } else {
+        alert(result.error);
+      }
+
+      // Optionally reload the page after success
+      location.reload();
+    } catch (error) {
+      console.error('Error reactivating subscription:', error);
+      alert('An error occurred while reactivating the subscription.');
+    }
+  })
+  
+  </script>
+
+<!-- <script src="/js/payment.js"></script> -->
+
+</body>
+</html>
