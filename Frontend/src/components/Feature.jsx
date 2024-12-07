@@ -9,39 +9,35 @@ export const Feature = () => {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true); // État pour gérer le défilement automatique
-
-  // Fonction pour aller à l'image suivante
+  const [isPlaying, setIsPlaying] = useState(true); 
   const nextImage = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
-  // Fonction pour aller à l'image précédente
   const prevImage = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
   };
 
-  // Gestion du défilement automatique
+  
   useEffect(() => {
     let interval;
     if (isPlaying) {
       interval = setInterval(() => {
         nextImage();
-      }, 3000); // Change l'image toutes les 3 secondes
+      }, 3000); 
     }
-    return () => clearInterval(interval); // Nettoie l'intervalle lors du démontage ou de la pause
+    return () => clearInterval(interval);
   }, [isPlaying]);
 
-  // Fonction pour basculer l'état de pause/lecture
+ 
   const togglePlayPause = () => {
     setIsPlaying(!isPlaying);
   };
 
   return (
     <div className="relative flex justify-center items-center h-full w-full pb-16 lg:mx-0 sm:mx-6 md:ms-4">
-      {/* Image affichée */}
       <img
         src={images[currentIndex]}
         alt={`Image${currentIndex + 1}`}
@@ -50,7 +46,6 @@ export const Feature = () => {
         }`}
       />
 
-      {/* Boutons précédent/suivant */}
       <div
         className="absolute flex items-center justify-between bg-[#E3EBF9] p-2 rounded-full"
         style={{
@@ -82,7 +77,6 @@ export const Feature = () => {
         </div>
       </div>
 
-      {/* Bouton Pause/Play */}
       <div
         className="absolute flex items-center space-x-4"
         style={{
@@ -96,7 +90,6 @@ export const Feature = () => {
         >
           {isPlaying ? (
             <div className="flex space-x-1" style={{ color: '#1B0454' }}>
-              {/* Icone Pause */}
               <div className="w-1 h-4 bg-current rounded"></div>
               <div className="w-1 h-4 bg-current rounded"></div>
             </div>
@@ -106,7 +99,6 @@ export const Feature = () => {
         </div>
       </div>
 
-      {/* Indicateurs de navigation */}
       <div
         className="absolute flex items-center justify-center bg-[#E3EBF9] rounded-full px-3 py-2"
         style={{

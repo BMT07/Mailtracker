@@ -23,7 +23,6 @@ export const Navbarus = () => {
                 <span className="text-customBlue text-xl font-semibold leading-tight ml-2">Mailtracker</span>
             </div>
 
-            {/* Desktop Menu */}
             <ul className="hidden md:flex space-x-8 font-poppins text-[#6C6384] items-center">
                 <li className="hover:text-blue-600 transition-colors cursor-pointer">Home</li>
                 <li className="hover:text-blue-600 transition-colors cursor-pointer">Blog</li>
@@ -31,18 +30,16 @@ export const Navbarus = () => {
                 <li className="hover:text-blue-600 transition-colors cursor-pointer">Support</li>
                 {/* Separator */}
                 <li className="border-l border-gray-300 h-6"></li>
-                {/* Name and Image */}
                 <li className="flex items-center pl-4 space-x-2">
                     <span className="text-[#1B0454] font-semibold">Afi K.</span>
                     <img
-                        src={require('./assetsus/AliK.png')} // Remplace par l'image réelle
+                        src={require('./assetsus/AliK.png')} 
                         alt="Afi K."
                         className="h-8 w-8 rounded-full object-cover"
                     />
                 </li>
             </ul>
 
-            {/* Mobile Hamburger Icon */}
             <div className="md:hidden absolute right-6 flex items-center">
                 <button onClick={toggleMenu} className="text-gray-700">
                     <svg
@@ -58,7 +55,6 @@ export const Navbarus = () => {
                 </button>
             </div>
 
-            {/* Mobile Menu */}
             <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'} absolute top-0 right-0 w-full bg-white shadow-md py-4 px-6`}>
                 <ul className="space-y-4 text-gray-700 font-medium">
                     <li className="hover:text-blue-600 transition-colors cursor-pointer" onClick={closeMenu}>Home</li>
@@ -66,11 +62,10 @@ export const Navbarus = () => {
                     <li className="hover:text-blue-600 transition-colors cursor-pointer" onClick={closeMenu}>FAQ</li>
                     <li className="hover:text-blue-600 transition-colors cursor-pointer" onClick={closeMenu}>Support</li>
                 </ul>
-                {/* Mobile Name and Image */}
                 <div className="flex items-center mt-4 space-x-2">
                     <span className="text-[#1B0454] font-semibold">Afi K.</span>
                     <img
-                        src={require('../../assets/Logo.png')} // Remplace par l'image réelle
+                        src={require('../../assets/Logo.png')} 
                         alt="Afi K."
                         className="h-8 w-8 rounded-full object-cover"   
                     />

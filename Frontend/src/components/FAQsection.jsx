@@ -36,7 +36,6 @@ export const FAQSection = () => {
             className="flex flex-col sm:flex-row items-start sm:items-center justify-between cursor-pointer"
             onClick={() => toggleSection(index)}
           >
-            {/* Numéro dynamique */}
             <span
               className={`text-customBlue font-space-mono text-lg ${
                 expanded === index
@@ -68,7 +67,6 @@ export const FAQSection = () => {
             </div>
           </div>
 
-          {/* Texte déplié */}
           {expanded === index && (
             <div className="relative">
               <p className="text-[#6C6384] text-sm sm:text-base leading-relaxed w-full sm:w-3/4 lg:px-8">

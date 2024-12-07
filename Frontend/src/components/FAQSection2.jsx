@@ -19,11 +19,11 @@ export const FAQSection2 = () => {
         </div>
 
         {/* Right Element (Image) */}
-        <div className="flex-1 w-full max-w-auto sm:max-w-auto md:max-w-auto lg:max-w-full">
+        <div className="flex-1 w-full max-w-full sm:max-w-full md:max-w-full lg:max-w-full">
           <img
             src={require('../assets/image 3.png')}
             alt="Illustration"
-            className="w-full h-auto rounded-[40px]"
+            className="w-full h-auto rounded-[40px] lg:rounded-[40px]"
           />
         </div>
       </div>

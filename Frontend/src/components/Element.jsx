@@ -17,7 +17,6 @@ export const Element = () => {
       {/* Trait séparateur après le texte */}
       <div className="border-t-2 border-gray-300 mb-8"></div>
 
-      {/* 3 Blocks avec traits réactifs */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Block 1 */}
         <div className="flex flex-col pb-4 lg:pb-0 lg:border-r-2 lg:border-gray-300">
